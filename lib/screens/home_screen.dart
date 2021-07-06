@@ -5,6 +5,8 @@ import 'package:flutter_budget_ui/models/category_model.dart';
 import 'package:flutter_budget_ui/models/expense_model.dart';
 import 'package:flutter_budget_ui/widgets/bar_chart.dart';
 
+import 'category_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -49,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  '\$${(category.maxAmount! - totalAmountSpent).toStringAsFixed(2)}/ \$${category.maxAmount!.toStringAsFixed(2)}',
+                  '\₹${(category.maxAmount! - totalAmountSpent).toStringAsFixed(2)}/ \₹${category.maxAmount!.toStringAsFixed(2)}',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
                 )
               ],
