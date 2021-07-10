@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Budget UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.green,
+        primaryColor: Colors.green.shade400,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomeScreen(),

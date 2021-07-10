@@ -112,8 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
               iconSize: 30.0,
               onPressed: () {},
             ),
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text('My Budget'),
+            flexibleSpace: Center(
+              child: FlexibleSpaceBar(
+                title: Text('My Budget'),
+              ),
             ),
             actions: <Widget>[
               IconButton(
