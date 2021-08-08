@@ -38,7 +38,7 @@ class BarChart extends StatelessWidget {
                 iconSize: 30.0,
               ),
               Text(
-                "Nov 10, 2021 - Nov 16, 2021",
+                "Nov 11, 2021 - Nov 16, 2021",
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w600,
