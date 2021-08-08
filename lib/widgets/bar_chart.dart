@@ -140,3 +140,28 @@ class Bar extends StatelessWidget {
     );
   }
 }
+
+// children: <Widget>[
+//         Text(
+//           '\₹${amountSpent!.toStringAsFixed(2)}',
+//           style: TextStyle(fontWeight: FontWeight.w600),
+//         ),
+//         SizedBox(
+//           height: 6.0,
+//         ),
+//         Container(
+//           height: barHeight,
+//           width: 18.0,
+//           decoration: BoxDecoration(
+//             color: Theme.of(context).primaryColor,
+//             borderRadius: BorderRadius.circular(6.0),
+//           ),
+//         ),
+//         SizedBox(
+//           height: 8.0,
+//         ),
+//         Text(
+//           "$label",
+//           style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
+//         ),
+//       ],
