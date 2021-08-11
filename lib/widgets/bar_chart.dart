@@ -5,15 +5,18 @@ class BarChart extends StatelessWidget {
 
   BarChart(this.expenses);
 
-  @override
-  Widget build(BuildContext context) {
+  Future<double> calculateExpenses() async {
     double mostExpensive = 0;
     expenses!.forEach((double price) {
       if (price > mostExpensive) {
         mostExpensive = price;
       }
     });
+    return mostExpensive;
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(5.0),
       child: Column(
@@ -55,47 +58,53 @@ class BarChart extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              Bar(
-                label: 'Su',
-                amountSpent: expenses![0],
-                mostExpensive: mostExpensive,
-              ),
-              Bar(
-                label: 'Mo',
-                amountSpent: expenses![1],
-                mostExpensive: mostExpensive,
-              ),
-              Bar(
-                label: 'Tu',
-                amountSpent: expenses![2],
-                mostExpensive: mostExpensive,
-              ),
-              Bar(
-                label: 'We',
-                amountSpent: expenses![3],
-                mostExpensive: mostExpensive,
-              ),
-              Bar(
-                label: 'Th',
-                amountSpent: expenses![4],
-                mostExpensive: mostExpensive,
-              ),
-              Bar(
-                label: 'Fr',
-                amountSpent: expenses![5],
-                mostExpensive: mostExpensive,
-              ),
-              Bar(
-                label: 'Sa',
-                amountSpent: expenses![6],
-                mostExpensive: mostExpensive,
-              ),
-            ],
-          )
+          FutureBuilder<double>(
+              future: calculateExpenses(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return Container();
+                double mostExpensive = snapshot.data!;
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Bar(
+                      label: 'Su',
+                      amountSpent: expenses![0],
+                      mostExpensive: mostExpensive,
+                    ),
+                    Bar(
+                      label: 'Mo',
+                      amountSpent: expenses![1],
+                      mostExpensive: mostExpensive,
+                    ),
+                    Bar(
+                      label: 'Tu',
+                      amountSpent: expenses![2],
+                      mostExpensive: mostExpensive,
+                    ),
+                    Bar(
+                      label: 'We',
+                      amountSpent: expenses![3],
+                      mostExpensive: mostExpensive,
+                    ),
+                    Bar(
+                      label: 'Th',
+                      amountSpent: expenses![4],
+                      mostExpensive: mostExpensive,
+                    ),
+                    Bar(
+                      label: 'Fr',
+                      amountSpent: expenses![5],
+                      mostExpensive: mostExpensive,
+                    ),
+                    Bar(
+                      label: 'Sa',
+                      amountSpent: expenses![6],
+                      mostExpensive: mostExpensive,
+                    ),
+                  ],
+                );
+              })
         ],
       ),
     );
@@ -140,28 +149,3 @@ class Bar extends StatelessWidget {
     );
   }
 }
-
-// children: <Widget>[
-//         Text(
-//           '\₹${amountSpent!.toStringAsFixed(2)}',
-//           style: TextStyle(fontWeight: FontWeight.w600),
-//         ),
-//         SizedBox(
-//           height: 6.0,
-//         ),
-//         Container(
-//           height: barHeight,
-//           width: 18.0,
-//           decoration: BoxDecoration(
-//             color: Theme.of(context).primaryColor,
-//             borderRadius: BorderRadius.circular(6.0),
-//           ),
-//         ),
-//         SizedBox(
-//           height: 8.0,
-//         ),
-//         Text(
-//           "$label",
-//           style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
-//         ),
-//       ],
