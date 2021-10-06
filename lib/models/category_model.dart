@@ -1,15 +1,14 @@
 import 'package:flutter_budget_ui/models/expense_model.dart';
-import 'package:hive/hive.dart';
-part 'category_model.g.dart';
+import 'package:objectbox/objectbox.dart';
 
-@HiveType(typeId: 1)
+@Entity()
 class Category {
-  @HiveField(0)
-  final String? name;
-  @HiveField(1)
-  final double? maxAmount;
-  @HiveField(2)
-  final List<Expense>? expenses;
+  @Id()
+  int id=0;
+  String name;
+  double maxAmount;
+  @Backlink()
+  final expenses = ToMany<Expense>();
 
-  Category({this.name, this.maxAmount, this.expenses});
+  Category({required this.name, required this.maxAmount});
 }
