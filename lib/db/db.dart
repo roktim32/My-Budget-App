@@ -1,13 +1,18 @@
-import 'package:flutter_budget_ui/models/category_model.dart';
-import 'package:flutter_budget_ui/models/expense_model.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'dart:io';
+import 'package:flutter_budget_ui/objectbox.g.dart';
+import 'package:objectbox/objectbox.dart';
 
-class Db {
-  Future<void> init() async {
-    await Hive.initFlutter();
-    Hive.registerAdapter(CategoryAdapter());
-    Hive.registerAdapter(ExpenseAdapter());
-    await Hive.openBox<Category>("UserTable");
+class Db{
+  static Store? _store;
+
+  static void init(Directory dir){
+    _store = Store(getObjectBoxModel(), directory: dir.path + '/mybudget'); 
   }
+
+  static void dispose(){
+    _store!.close();
+    _store = null;
+  }
+
+  static Store? get store=>_store;
 }

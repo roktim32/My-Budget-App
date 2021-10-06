@@ -1,12 +1,15 @@
-import 'package:hive/hive.dart';
-part 'expense_model.g.dart';
+import 'package:flutter_budget_ui/models/category_model.dart';
+import 'package:objectbox/objectbox.dart';
 
-@HiveType(typeId: 0)
+@Entity()
 class Expense {
-  @HiveField(0)
-  final String? name;
-  @HiveField(1)
-  final double? cost;
+  @Id()
+  int id=0;
+  String name;
+  double cost;
+  @Property(type: PropertyType.date)
+  DateTime dateTime;
+  final category = ToOne<Category>();
 
-  Expense({this.name, this.cost});
+  Expense({required this.name, required this.cost, required this.dateTime});
 }
